@@ -1,3 +1,11 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+
+import Body from "./components/Body"
+import Login from "./components/Login"
+import Profile from "./components/Profile"
+import { Provider } from "react-redux"
+import appStore from "./utils/appStore"
+import Feed from "./components/Feed"
 
 
 function App() {
@@ -5,9 +13,21 @@ function App() {
 
   return (
     <>
+    <Provider store={appStore}>
+    <BrowserRouter basename="/">
+    <Routes>   
+      <Route path='/' element={<Body/>}>
+         <Route path='/' element={<Feed/>}/>
+         <Route path='/login' element={<Login/>}/>
+         <Route path='/profile' element={<Profile/>}/>
       
-      <h1 className="text-3xl font-bold text-blue-600">Vite </h1>
       
+    </Route>
+      
+    </Routes>
+
+      </BrowserRouter>
+      </Provider>
     </>
   )
 }
